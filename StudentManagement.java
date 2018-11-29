@@ -133,6 +133,21 @@ public class studentmanagement extends JFrame {
 		contentPane.add(btnRegist);
 		
 		JButton btnUpdate = new JButton("Update");
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					ConnectDB();
+					st = conn.createStatement();
+					int n = st.executeUpdate("Update account set Password='"+tfPassword.getText()+"'where Email='"+tfEmail.getText()+"'");
+					if(n>0) JOptionPane.showMessageDialog(null, "Success");
+					else JOptionPane.showMessageDialog(null, "Fail");
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+			}
+		});
 		btnUpdate.setBounds(226, 244, 89, 23);
 		contentPane.add(btnUpdate);
 		
