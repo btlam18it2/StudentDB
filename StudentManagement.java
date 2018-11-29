@@ -29,6 +29,7 @@ public class studentmanagement extends JFrame {
 	private JTextField tfPassword;
 	private java.sql.Connection conn;
 	private java.sql.Statement st;
+	private ButtonGroup br;
 	
 	/**
 	 * Launch the application.
@@ -108,6 +109,9 @@ public class studentmanagement extends JFrame {
 		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblGender.setBounds(95, 188, 67, 14);
 		contentPane.add(lblGender);
+		br = new ButtonGroup();
+		br.add(rdoMale);
+		br.add(rdoFemale);
 		
 		JButton btnRegist = new JButton("AddNew");
 		btnRegist.addActionListener(new ActionListener() {
