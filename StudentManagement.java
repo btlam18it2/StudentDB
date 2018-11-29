@@ -156,6 +156,22 @@ public class studentmanagement extends JFrame {
 		contentPane.add(btnUpdate);
 		
 		JButton btnDelete = new JButton("Delete");
+	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+		try {
+			ConnectDB();
+			st = conn.createStatement();
+			int n = st.executeUpdate("Delete from account where Email='"+tfEmail.getText()+"'");
+			if(n>0) JOptionPane.showMessageDialog(null, "Success");
+			else JOptionPane.showMessageDialog(null, "Fail");
+		} catch (Exception e3) {
+			// TODO: handle exception
+			e3.printStackTrace();
+		}
+			}
+		});
 		btnDelete.setBounds(363, 244, 89, 23);
 		contentPane.add(btnDelete);
 	}
