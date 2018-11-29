@@ -1,8 +1,19 @@
+package test;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Driver;
 import com.mysql.jdbc.Statement;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -17,7 +28,7 @@ public class studentmanagement extends JFrame {
 	private JTextField tfEmail;
 	private JTextField tfPassword;
 	private java.sql.Connection conn;
-	private Statement st;
+	private java.sql.Statement st;
 	
 	/**
 	 * Launch the application.
@@ -101,6 +112,21 @@ public class studentmanagement extends JFrame {
 		JButton btnRegist = new JButton("AddNew");
 		btnRegist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String gt="";
+					if(rdoMale.isSelected()) gt=rdoMale.getText();
+					if(rdoFemale.isSelected()) gt=rdoFemale.getText();
+					ConnectDB();
+					st = conn.createStatement();
+					int n = st.executeUpdate("Insert into account values('"+tfEmail.getText()+"','"+tfPassword.getText()+"','"+gt+"')");
+					if(n>0) JOptionPane.showMessageDialog(null, "Success");
+					else JOptionPane.showMessageDialog(null, "Fail");
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+	
+				}
 			}
 		});
 		btnRegist.setBounds(95, 244, 89, 23);
